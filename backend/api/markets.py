@@ -7,6 +7,8 @@ from sqlmodel import Session, select
 from sqlalchemy import desc
 from typing import Optional
 import json
+import main
+import time
 
 from main import get_session
 from models.market import Market
@@ -202,7 +204,20 @@ def get_expired_markets():
 @router.post("/sync/bayse")
 def sync_from_bayse():
     result = sync_bayse_markets(verbose=False)
+    main.last_sync_time = time.time()
     return {
         "message": "Bayse sync complete",
         "result": result,
+    }
+
+@router.get("/sync/status")
+def get_sync_status():
+    now = time.time()
+    seconds_since_sync = now - main.last_sync_time
+    needs_sync = seconds_since_sync > main.SYNC_INTERVAL
+
+    return {
+        "last_sync": main.last_sync_time,
+        "seconds_since_sync": int(seconds_since_sync),
+        "needs_sync": needs_sync,
     }

@@ -95,7 +95,7 @@ def login(
     user = User(
         username=username,
         avatar=body.avatar,
-        balance=10000.0,
+        balance=1000000.0,
         session_token=token,
     )
 

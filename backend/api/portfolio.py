@@ -155,7 +155,7 @@ def get_leaderboard(session: Session = Depends(get_session)):
                 open_value += p.shares * current_price
 
         portfolio_value = user.balance + open_value
-        starting_balance = 10000.0
+        starting_balance = 1000000.0
         pnl = portfolio_value - starting_balance
         pnl_percent = (pnl / starting_balance) * 100
 

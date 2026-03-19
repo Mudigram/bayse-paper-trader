@@ -17,7 +17,7 @@ from api.auth import get_user_by_token
 router = APIRouter()
 
 MINIMUM_TRADE = 100.0   # minimum ₦100 per trade
-MAXIMUM_TRADE = 5000.0  # maximum ₦5000 per trade
+MAXIMUM_TRADE = 50000.0  # maximum ₦50,000 per trade
 
 
 class TradeRequest(BaseModel):
